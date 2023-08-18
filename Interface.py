@@ -2,7 +2,7 @@ import customtkinter as ctk
 import os
 
 #put in your time to work in hours (2.5 = two and a half hours)
-work_time = 2.5
+work_time = 0.01
 
 work_time = work_time * 3600 + 1
 
@@ -29,6 +29,8 @@ if os.path.exists(file_path):
 else:
     remaining_time = work_time
 
+global time_0
+time_0 = False
 def show_time():
     global remaining_time
     remaining_time = int(remaining_time)
@@ -43,6 +45,8 @@ def show_time():
 
     if remaining_time <= 0:
         my_label.configure(text="TIME'S UP!")
+        global time_0
+        time_0 = True
         return
     
     seconds = remaining_time % 60
@@ -67,6 +71,10 @@ def reset_time():
 def save_time():
     with open(file_path, 'w') as file:
         file.write(str(remaining_time))
+    
+    if time_0:
+        with open(file_path, 'w') as file:
+            file.write(str(int(work_time)))
     window.destroy()
 
 frame = ctk.CTkFrame(window)
