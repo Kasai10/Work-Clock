@@ -2,7 +2,7 @@ import customtkinter as ctk
 import os
 
 #put in your time to work in hours (2.5 = two and a half hours)
-work_time = 0.01
+work_time = 2.5
 
 work_time = work_time * 3600 + 1
 
@@ -77,7 +77,7 @@ def save_time():
             file.write(str(int(work_time)))
     window.destroy()
 
-frame = ctk.CTkFrame(window)
+frame = ctk.CTkFrame(window, bg_color='black', fg_color='black')
 pause_button = ctk.CTkButton(frame, text="Pause/Resume", command=toggle_pause, corner_radius = 8)
 pause_button.grid(row=0, column=0, padx=2)
 
