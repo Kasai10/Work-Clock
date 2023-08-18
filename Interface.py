@@ -6,6 +6,10 @@ work_time = 2.5
 
 work_time = work_time * 3600 + 1
 
+script_directory = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(script_directory, 'time.txt')
+
+
 window = ctk.CTk()
 window.title('Remaining Time')
 
@@ -19,8 +23,8 @@ def toggle_pause():
     paused = not paused
 
 global remaining_time
-if os.path.exists('time.txt'):
-    with open('time.txt', 'r') as file:
+if os.path.exists(file_path):
+    with open(file_path, 'r') as file:
         remaining_time = int(file.readline())
 else:
     remaining_time = work_time
@@ -61,7 +65,7 @@ def reset_time():
     my_label.configure(text=time_string)
 
 def save_time():
-    with open('time.txt', 'w') as file:
+    with open(file_path, 'w') as file:
         file.write(str(remaining_time))
     window.destroy()
 
